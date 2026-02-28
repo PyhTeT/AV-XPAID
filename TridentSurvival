@@ -1,0 +1,117 @@
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local G2L = {}
+
+G2L["1"] = Instance.new("ScreenGui", LocalPlayer:WaitForChild("PlayerGui"))
+G2L["1"].Name = "AVOX"
+G2L["1"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+G2L["1"].ResetOnSpawn = false
+
+G2L["2"] = Instance.new("Frame", G2L["1"])
+G2L["2"].BorderSizePixel = 0
+G2L["2"].BackgroundColor3 = Color3.fromRGB(23, 23, 32)
+G2L["2"].Size = UDim2.new(0, 350, 0, 200)
+G2L["2"].Position = UDim2.new(0.5, -175, 0.5, -100) 
+G2L["2"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+G2L["2"].Name = "BackGround"
+G2L["2"].Active = true
+G2L["2"].Draggable = true 
+
+G2L["6"] = Instance.new("UIStroke", G2L["2"])
+G2L["6"].Color = Color3.fromRGB(45, 14, 113)
+
+G2L["3"] = Instance.new("TextLabel", G2L["2"])
+G2L["3"].BorderSizePixel = 0
+G2L["3"].TextSize = 40
+G2L["3"].BackgroundColor3 = Color3.fromRGB(23, 23, 32)
+G2L["3"].FontFace = Font.new("rbxasset://fonts/families/PatrickHand.json")
+G2L["3"].TextColor3 = Color3.fromRGB(255, 255, 255)
+G2L["3"].Size = UDim2.new(0, 350, 0, 26)
+G2L["3"].Text = "AV∅X"
+G2L["3"].Name = "NAME"
+
+G2L["4"] = Instance.new("TextButton", G2L["2"])
+G2L["4"].BorderSizePixel = 0
+G2L["4"].TextSize = 15
+G2L["4"].TextColor3 = Color3.fromRGB(255, 255, 255)
+G2L["4"].BackgroundColor3 = Color3.fromRGB(23, 23, 32)
+G2L["4"].FontFace = Font.new("rbxasset://fonts/families/PressStart2P.json")
+G2L["4"].Size = UDim2.new(0, 170, 0, 35)
+G2L["4"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+G2L["4"].Text = "Load"
+G2L["4"].Name = "Load"
+G2L["4"].Position = UDim2.new(0, 15, 1, -50)
+
+G2L["5"] = Instance.new("UIStroke", G2L["4"])
+G2L["5"].Color = Color3.fromRGB(41, 41, 41)
+G2L["5"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+G2L["7"] = Instance.new("TextButton", G2L["2"])
+G2L["7"].BorderSizePixel = 0
+G2L["7"].TextSize = 15
+G2L["7"].TextColor3 = Color3.fromRGB(255, 255, 255)
+G2L["7"].BackgroundColor3 = Color3.fromRGB(23, 23, 32)
+G2L["7"].FontFace = Font.new("rbxasset://fonts/families/PressStart2P.json")
+G2L["7"].Size = UDim2.new(0, 130, 0, 35)
+G2L["7"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+G2L["7"].Text = "Exit"
+G2L["7"].Name = "DeleteGui"
+G2L["7"].Position = UDim2.new(1, -145, 1, -50)
+
+G2L["8"] = Instance.new("UIStroke", G2L["7"])
+G2L["8"].Color = Color3.fromRGB(41, 41, 41)
+G2L["8"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+G2L["9"] = Instance.new("TextBox", G2L["2"])
+G2L["9"].Name = "Key"
+G2L["9"].TextXAlignment = Enum.TextXAlignment.Left
+G2L["9"].PlaceholderText = " Key..."
+G2L["9"].PlaceholderColor3 = Color3.fromRGB(200, 200, 200)
+G2L["9"].BorderSizePixel = 0
+G2L["9"].TextSize = 15
+G2L["9"].TextColor3 = Color3.fromRGB(255, 255, 255)
+G2L["9"].BackgroundColor3 = Color3.fromRGB(23, 23, 32)
+G2L["9"].FontFace = Font.new("rbxasset://fonts/families/PressStart2P.json")
+G2L["9"].Size = UDim2.new(0, 339, 0, 30)
+G2L["9"].Position = UDim2.new(0.01429, 0, 0.55, -5)
+G2L["9"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+G2L["9"].Text = ""
+
+G2L["a"] = Instance.new("UIStroke", G2L["9"])
+G2L["a"].Color = Color3.fromRGB(41, 41, 41)
+G2L["a"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+local validKeys = {
+    "DEVKEY123",
+    "X9f@7Lq#2vP!rT8z$Wm^3nK*1sD",
+    "Q!4z^M7p*R9x@L2w#V6t$N8y%J0",
+    "A$1d^F3g*H5j@K7l#M9n%P0r!S2",
+    "Z!8x^C6v*B4n@M2q#L0t$K9r%J7",
+    "Y#5t$R3p%Q1n^O7m*L9k@J2h!F8",
+}
+
+local function isKeyValid(enteredKey)
+    for _, key in ipairs(validKeys) do
+        if enteredKey == key then
+            return true
+        end
+    end
+    return false
+end
+
+G2L["4"].MouseButton1Click:Connect(function()
+    local enteredKey = G2L["9"].Text
+    if isKeyValid(enteredKey) then
+        G2L["1"]:Destroy()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PyhTeT/AV-X/refs/heads/main/TridentSurvivalPAID", true))()
+    else
+        game:GetService("Players").LocalPlayer:Kick("Invalid")
+    end
+end)
+
+G2L["7"].MouseButton1Click:Connect(function()
+    G2L["1"]:Destroy()
+end)
+
+return G2L["1"]
